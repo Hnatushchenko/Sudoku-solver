@@ -1,0 +1,32 @@
+G:\Other computers\Мій ноутбук\repos\C#\Sudoku solver\bin\Debug\net5.0\Sudoku solver.exe
+G:\Other computers\Мій ноутбук\repos\C#\Sudoku solver\bin\Debug\net5.0\Sudoku solver.deps.json
+G:\Other computers\Мій ноутбук\repos\C#\Sudoku solver\bin\Debug\net5.0\Sudoku solver.runtimeconfig.json
+G:\Other computers\Мій ноутбук\repos\C#\Sudoku solver\bin\Debug\net5.0\Sudoku solver.runtimeconfig.dev.json
+G:\Other computers\Мій ноутбук\repos\C#\Sudoku solver\bin\Debug\net5.0\Sudoku solver.dll
+G:\Other computers\Мій ноутбук\repos\C#\Sudoku solver\bin\Debug\net5.0\ref\Sudoku solver.dll
+G:\Other computers\Мій ноутбук\repos\C#\Sudoku solver\bin\Debug\net5.0\Sudoku solver.pdb
+G:\Other computers\Мій ноутбук\repos\C#\Sudoku solver\obj\Debug\net5.0\Sudoku solver.csproj.AssemblyReference.cache
+G:\Other computers\Мій ноутбук\repos\C#\Sudoku solver\obj\Debug\net5.0\Sudoku solver.GeneratedMSBuildEditorConfig.editorconfig
+G:\Other computers\Мій ноутбук\repos\C#\Sudoku solver\obj\Debug\net5.0\Sudoku solver.AssemblyInfoInputs.cache
+G:\Other computers\Мій ноутбук\repos\C#\Sudoku solver\obj\Debug\net5.0\Sudoku solver.AssemblyInfo.cs
+G:\Other computers\Мій ноутбук\repos\C#\Sudoku solver\obj\Debug\net5.0\Sudoku solver.csproj.CoreCompileInputs.cache
+G:\Other computers\Мій ноутбук\repos\C#\Sudoku solver\obj\Debug\net5.0\Sudoku solver.dll
+G:\Other computers\Мій ноутбук\repos\C#\Sudoku solver\obj\Debug\net5.0\ref\Sudoku solver.dll
+G:\Other computers\Мій ноутбук\repos\C#\Sudoku solver\obj\Debug\net5.0\Sudoku solver.pdb
+G:\Other computers\Мій ноутбук\repos\C#\Sudoku solver\obj\Debug\net5.0\Sudoku solver.genruntimeconfig.cache
+C:\Users\gnatu\source\repos\C#\Sudoku solver\bin\Debug\net5.0\Sudoku solver.exe
+C:\Users\gnatu\source\repos\C#\Sudoku solver\bin\Debug\net5.0\Sudoku solver.deps.json
+C:\Users\gnatu\source\repos\C#\Sudoku solver\bin\Debug\net5.0\Sudoku solver.runtimeconfig.json
+C:\Users\gnatu\source\repos\C#\Sudoku solver\bin\Debug\net5.0\Sudoku solver.runtimeconfig.dev.json
+C:\Users\gnatu\source\repos\C#\Sudoku solver\bin\Debug\net5.0\Sudoku solver.dll
+C:\Users\gnatu\source\repos\C#\Sudoku solver\bin\Debug\net5.0\ref\Sudoku solver.dll
+C:\Users\gnatu\source\repos\C#\Sudoku solver\bin\Debug\net5.0\Sudoku solver.pdb
+C:\Users\gnatu\source\repos\C#\Sudoku solver\obj\Debug\net5.0\Sudoku solver.csproj.AssemblyReference.cache
+C:\Users\gnatu\source\repos\C#\Sudoku solver\obj\Debug\net5.0\Sudoku solver.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\gnatu\source\repos\C#\Sudoku solver\obj\Debug\net5.0\Sudoku solver.AssemblyInfoInputs.cache
+C:\Users\gnatu\source\repos\C#\Sudoku solver\obj\Debug\net5.0\Sudoku solver.AssemblyInfo.cs
+C:\Users\gnatu\source\repos\C#\Sudoku solver\obj\Debug\net5.0\Sudoku solver.csproj.CoreCompileInputs.cache
+C:\Users\gnatu\source\repos\C#\Sudoku solver\obj\Debug\net5.0\Sudoku solver.dll
+C:\Users\gnatu\source\repos\C#\Sudoku solver\obj\Debug\net5.0\ref\Sudoku solver.dll
+C:\Users\gnatu\source\repos\C#\Sudoku solver\obj\Debug\net5.0\Sudoku solver.pdb
+C:\Users\gnatu\source\repos\C#\Sudoku solver\obj\Debug\net5.0\Sudoku solver.genruntimeconfig.cache
