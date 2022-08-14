@@ -1,5 +1,5 @@
 ﻿using System;
-
+using Autofac;
 
 namespace Sudoku_solver
 {   
@@ -7,22 +7,11 @@ namespace Sudoku_solver
     {
         static void Main()
         {
-            Sudoku? sudoku = Sudoku.FromConsole();
-
-            Console.WriteLine();
-            if (sudoku is null) return;
-
-            sudoku.OutputPrintingEventHandler += Console.Write;
-
-            sudoku.SolveByBacktracking();
-
-            if (sudoku.IsSolved)
+            IContainer container = ContainerConfig.Configure();
+            using (var scope = container.BeginLifetimeScope())
             {
-                sudoku.Print();
-            }
-            else
-            {
-                Console.WriteLine("Cannot solve the sudoku");
+                var app = scope.Resolve<IApplication>();
+                app.Run();
             }
         }
     }

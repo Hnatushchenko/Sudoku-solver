@@ -4,42 +4,27 @@ using System.Collections.Generic;
 
 namespace Sudoku_solver
 {
-    class Cell
+    class Cell : ICell
     {
+        IValueSetter _valueSetter;
+
         private int? _value;
         public int? Value
         {
             get => _value;
             set
             {
-                if (value == 0 || value == null)
-                {
-                    _value = null;
-                }
-                else if (value > 0 && value < 10)
-                {
-                    _value = value;
-                    possibleValues = null;
-                }
-                else
-                {
-                    throw new ArgumentOutOfRangeException("The value has to be in the range from 1 to 9");
-                }
+                _value = _valueSetter.Set(value);
             }
         }
 
         private List<int?>? possibleValues;
 
-        public Cell()
+        public Cell (IValueSetter valueSetter)
         {
+            _valueSetter = valueSetter;
             Value = null;
             possibleValues = new List<int?>() { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-        }
-
-        public Cell(int? value)
-        {
-            Value = value;
-            possibleValues = null;
         }
 
         public void RemoveFromPossibleValues(int? value, ref bool exactValueFound)

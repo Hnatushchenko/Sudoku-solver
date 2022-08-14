@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "G:\\Other computers\\Мій ноутбук\\repos\\C#\\Sudoku solver\\Sudoku solver.csproj": {}
+    "C:\\Users\\gnatu\\source\\repos\\C#\\Sudoku-solver\\Sudoku solver.csproj": {}
   },
   "projects": {
-    "G:\\Other computers\\Мій ноутбук\\repos\\C#\\Sudoku solver\\Sudoku solver.csproj": {
+    "C:\\Users\\gnatu\\source\\repos\\C#\\Sudoku-solver\\Sudoku solver.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "G:\\Other computers\\Мій ноутбук\\repos\\C#\\Sudoku solver\\Sudoku solver.csproj",
+        "projectUniqueName": "C:\\Users\\gnatu\\source\\repos\\C#\\Sudoku-solver\\Sudoku solver.csproj",
         "projectName": "Sudoku solver",
-        "projectPath": "G:\\Other computers\\Мій ноутбук\\repos\\C#\\Sudoku solver\\Sudoku solver.csproj",
-        "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-        "outputPath": "G:\\Other computers\\Мій ноутбук\\repos\\C#\\Sudoku solver\\obj\\",
+        "projectPath": "C:\\Users\\gnatu\\source\\repos\\C#\\Sudoku-solver\\Sudoku solver.csproj",
+        "packagesPath": "C:\\Users\\gnatu\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\gnatu\\source\\repos\\C#\\Sudoku-solver\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\gnatu\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -43,6 +39,12 @@
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
+          "dependencies": {
+            "Autofac": {
+              "target": "Package",
+              "version": "[6.4.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -58,7 +60,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.404\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.303\\RuntimeIdentifierGraph.json"
         }
       }
     }

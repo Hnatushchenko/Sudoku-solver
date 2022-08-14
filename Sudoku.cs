@@ -32,7 +32,7 @@ namespace Sudoku_solver
         {
             get
             {
-                foreach (List<Cell> row in _cellsTable)
+                foreach (List<ICell> row in _cellsTable)
                 {
                     if (row.Any(cell => cell.Value == null)) return false;
                 }
@@ -40,47 +40,24 @@ namespace Sudoku_solver
             }
         }
 
-        private List<List<Cell>> _cellsTable;
-        public event Action<string>? OutputPrintingEventHandler;      
+        private List<List<ICell>> _cellsTable;   
 
-        public Sudoku()
+        public ICell GetCell(int row, int column) => _cellsTable[row][column];
+
+        public Sudoku(CellFactory cellFactory)
         {
-            _cellsTable = new List<List<Cell>>();
-        }
-
-        public static Sudoku? FromConsole()
-        {
-            Sudoku? sudoku = new Sudoku();
-
-            Console.WriteLine("Enter the values:");
+            _cellsTable = new List<List<ICell>>();
             for (int i = 0; i < 9; i++)
             {
-                sudoku._cellsTable.Add(new List<Cell>());
-
-                string?[]? inputValues = Console.ReadLine()?.Split();
-
+                _cellsTable.Add(new List<ICell>());
                 for (int j = 0; j < 9; j++)
                 {
-                    sudoku._cellsTable[i].Add(new Cell());
-                    try
-                    {
-                        sudoku._cellsTable[i][j].Value = Convert.ToInt32(inputValues[j]);
-                    }
-                    catch (FormatException ex)
-                    {
-                        Console.WriteLine($"Format exception: {ex.Message}\n");
-                        return null;
-                    }
-                }       
+                    _cellsTable[i].Add(cellFactory.Create());
+                }
             }
-            if (sudoku.IsValid == false)
-            {
-                throw new ArgumentException("Given sudoku cannot exist");
-            }
-            return sudoku;
-        }
+        }  
 
-        private List<Cell> GetAllCellsFromSquare(int rowIndex, int columnIndex)
+        private List<ICell> GetAllCellsFromSquare(int rowIndex, int columnIndex)
         {
             int leftTopCornerRow;
             if (rowIndex <= 2) leftTopCornerRow = 0;
@@ -92,7 +69,7 @@ namespace Sudoku_solver
             else if (columnIndex <= 5) leftTopCornerColumn = 3;
             else leftTopCornerColumn = 6;
 
-            List<Cell> cells = new List<Cell>();
+            List<ICell> cells = new List<ICell>();
             for (int i = 0; i < 3; i++)
             {
                 for (int j = 0; j < 3; j++)
@@ -103,34 +80,34 @@ namespace Sudoku_solver
             return cells;
         }
         
-        private static List<int> GetMissingValuesForList(List<Cell> listOfCells)
+        private static List<int> GetMissingValuesForList(List<ICell> listOfCells)
         {
             List<int> result = new List<int>() { 1, 2, 3, 4, 5, 6, 7, 8, 9};
-            foreach (Cell cell in listOfCells)
+            foreach (ICell cell in listOfCells)
             {
                 result.Remove(cell.Value ?? 0);
             }
             return result;
         }
 
-        private static List<Cell> GetEmptyCellsFromList(List<Cell> listOfCells)
+        private static List<ICell> GetEmptyCellsFromList(List<ICell> listOfCells)
         {
-            List<Cell> listWithEmptyCells = new List<Cell>(listOfCells);
+            List<ICell> listWithEmptyCells = new List<ICell>(listOfCells);
             listWithEmptyCells.RemoveAll(cell => cell.Value is not null);
             return listWithEmptyCells;
         }
 
-        private List<Cell> GetColumnByIndex(int index)
+        private List<ICell> GetColumnByIndex(int index)
         {
-            List<Cell> column = new List<Cell>();
-            foreach (List<Cell> row in _cellsTable)
+            List<ICell> column = new List<ICell>();
+            foreach (List<ICell> row in _cellsTable)
             {
                 column.Add(row[index]);
             }
             return column;
         }
 
-        private List<Cell> GetSquareByIndex(int index)
+        private List<ICell> GetSquareByIndex(int index)
         {
             (int leftTopCornerRow, int leftTopCornerColumn) leftTopCoordinates;
 
@@ -166,7 +143,7 @@ namespace Sudoku_solver
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-            List<Cell> square = new List<Cell>();
+            List<ICell> square = new List<ICell>();
             for (int i = 0; i < 3; i++)
             {
                 for (int j = 0; j < 3; j++)
@@ -177,9 +154,9 @@ namespace Sudoku_solver
             return square;
         }
 
-        private List<Cell>? GetRowByCell(Cell cell)
+        private List<ICell>? GetRowByCell(ICell cell)
         {
-            foreach (List<Cell> row in _cellsTable)
+            foreach (List<ICell> row in _cellsTable)
             {
                 if (row.Contains(cell))
                 {
@@ -189,7 +166,7 @@ namespace Sudoku_solver
             return null;
         }
 
-        private List<Cell>? GetColumnByCell(Cell cell)
+        private List<ICell>? GetColumnByCell(ICell cell)
         {
             for (int columnIndex = 0; columnIndex < 9; columnIndex++)
             {
@@ -201,7 +178,7 @@ namespace Sudoku_solver
             return null;
         }
 
-        private List<Cell>? GetSquareByCell(Cell cell)
+        private List<ICell>? GetSquareByCell(ICell cell)
         {
             for (int squareIndex = 0; squareIndex < 9; squareIndex++)
             {
@@ -213,11 +190,11 @@ namespace Sudoku_solver
             return null;
         }
 
-        private Cell? GetEmptyCell()
+        public ICell? GetEmptyCell()
         {
-            foreach (List<Cell> row in _cellsTable)
+            foreach (List<ICell> row in _cellsTable)
             {
-                foreach (Cell cell in row)
+                foreach (ICell cell in row)
                 {
                     if (cell.Value is null) return cell;
                 }
@@ -225,20 +202,20 @@ namespace Sudoku_solver
             return null;
         }
 
-        private bool ValueIsPossble(Cell cellArg, int value)
+        public bool ValueIsPossble(ICell cellArg, int value)
         {
             List<int?> reservedValues = new List<int?>();
 
-            List<Cell>? row = GetRowByCell(cellArg);
-            List<Cell>? column = GetColumnByCell(cellArg);
-            List<Cell>? square = GetSquareByCell(cellArg);
+            List<ICell>? row = GetRowByCell(cellArg);
+            List<ICell>? column = GetColumnByCell(cellArg);
+            List<ICell>? square = GetSquareByCell(cellArg);
 
             if (row is null || column is null || square is null)
             {
                 throw new ArgumentException("Given cell does not belong to any list of cells");
             }
  
-            foreach (Cell cell in row)
+            foreach (ICell cell in row)
             {
                 if (!reservedValues.Contains(cell.Value))
                 {
@@ -246,7 +223,7 @@ namespace Sudoku_solver
                 }
             }
               
-            foreach (Cell cell in column)
+            foreach (ICell cell in column)
             {
                 if (!reservedValues.Contains(cell.Value))
                 {
@@ -254,7 +231,7 @@ namespace Sudoku_solver
                 }
             }
             
-            foreach (Cell cell in square)
+            foreach (ICell cell in square)
             {
                 if (!reservedValues.Contains(cell.Value))
                 {
@@ -266,17 +243,7 @@ namespace Sudoku_solver
             return true;
         }
 
-        public void Print()
-        {
-            for (int i = 0; i < 9; i++)
-            {
-                for (int j = 0; j < 9; j++)
-                {
-                    OutputPrintingEventHandler?.Invoke($"{_cellsTable[i][j].Value ?? 0} ");
-                }
-                OutputPrintingEventHandler?.Invoke("\n");
-            }
-        }
+        
 
         /*
          * This function does not work properly yet. 
@@ -297,7 +264,7 @@ namespace Sudoku_solver
                         if (_cellsTable[i][j].Value is not null) continue;
                         
                         List<int?> reservedValues = new List<int?>();
-                        foreach (Cell cell in _cellsTable[i])
+                        foreach (ICell cell in _cellsTable[i])
                         {
                             if (!reservedValues.Contains(cell.Value))
                             {
@@ -311,7 +278,7 @@ namespace Sudoku_solver
                                 reservedValues.Add(_cellsTable[k][j].Value);
                             }
                         }
-                        foreach (Cell cell in GetAllCellsFromSquare(i, j))
+                        foreach (ICell cell in GetAllCellsFromSquare(i, j))
                         {
                             if (!reservedValues.Contains(cell.Value))
                             {
@@ -323,12 +290,12 @@ namespace Sudoku_solver
                             _cellsTable[i][j].RemoveFromPossibleValues(value, ref newNumberWasAdded);
                         }
 
-                        foreach (List<Cell> row in _cellsTable)
+                        foreach (List<ICell> row in _cellsTable)
                         {
                             foreach (int value in GetMissingValuesForList(row))
                             {
-                                List<Cell> listWithEmptyCells = GetEmptyCellsFromList(row);
-                                foreach (Cell cell in listWithEmptyCells.ToList())
+                                List<ICell> listWithEmptyCells = GetEmptyCellsFromList(row);
+                                foreach (ICell cell in listWithEmptyCells.ToList())
                                 {
                                     if (cell.IsValuePossible(value) == false)
                                     {
@@ -345,11 +312,11 @@ namespace Sudoku_solver
 
                         for (int columnIndex = 0; columnIndex < 9; columnIndex++)
                         {
-                            List<Cell> column = GetColumnByIndex(columnIndex);
+                            List<ICell> column = GetColumnByIndex(columnIndex);
                             foreach (int value in GetMissingValuesForList(column))
                             {
-                                List<Cell> listWithEmptyCells = GetEmptyCellsFromList(column);
-                                foreach (Cell cell in listWithEmptyCells.ToList())
+                                List<ICell> listWithEmptyCells = GetEmptyCellsFromList(column);
+                                foreach (ICell cell in listWithEmptyCells.ToList())
                                 {
                                     if (cell.IsValuePossible(value) == false)
                                     {
@@ -366,11 +333,11 @@ namespace Sudoku_solver
 
                         for (int squareIndex = 0; squareIndex < 9; squareIndex++)
                         {
-                            List<Cell> square = GetSquareByIndex(squareIndex);
+                            List<ICell> square = GetSquareByIndex(squareIndex);
                             foreach (int value in GetMissingValuesForList(square))
                             {
-                                List<Cell> listWithEmptyCells = GetEmptyCellsFromList(square);
-                                foreach (Cell cell in listWithEmptyCells.ToList())
+                                List<ICell> listWithEmptyCells = GetEmptyCellsFromList(square);
+                                foreach (ICell cell in listWithEmptyCells.ToList())
                                 {
                                     if (cell.IsValuePossible(value) == false)
                                     {
@@ -388,31 +355,14 @@ namespace Sudoku_solver
                 }
                 if (IsSolved)
                 {
-                    OutputPrintingEventHandler?.Invoke("The sudoku was solved\n");
-                    OutputPrintingEventHandler?.Invoke($"Number of iterations = {iteration}\n");                   
+                    //OutputPrintingEventHandler?.Invoke("The sudoku was solved\n");
+                    //OutputPrintingEventHandler?.Invoke($"Number of iterations = {iteration}\n");                   
                     return true;
                 }
             } while (newNumberWasAdded);
 
-            OutputPrintingEventHandler?.Invoke("Cannot solve the sudoku\n");
-            OutputPrintingEventHandler?.Invoke($"Number of iterations = {iteration}\n");
-            return false;
-        }
-
-        public bool SolveByBacktracking()
-        {
-            Cell? emptyCell = GetEmptyCell();
-            if (emptyCell is null) return true;
-
-            for (int value = 1; value <= 9; value++)
-            {
-                if (ValueIsPossble(emptyCell, value))
-                {
-                    emptyCell.Value = value;                  
-                    if (SolveByBacktracking() == true) return true;
-                }                
-            }
-            emptyCell.Value = null;
+            //OutputPrintingEventHandler?.Invoke("Cannot solve the sudoku\n");
+            //OutputPrintingEventHandler?.Invoke($"Number of iterations = {iteration}\n");
             return false;
         }
     }

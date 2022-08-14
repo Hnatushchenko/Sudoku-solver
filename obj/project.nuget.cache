@@ -1,8 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "9aNbGDf0IOfLY3qAJtM1dzfSTjZCLb9fhoNpYcswkEUql9Fj1OljVAEmiyk5Px/VMvvC/PjcgioMya6oq06Ocw==",
+  "dgSpecHash": "J4oonL1ijZI/AiZ578/sDlhAnz/5PJhWMlkIzQV7XDKILxREW6cz2iw3rOZ9F+MdUw+JDhcF54+bJ9Ya1YEIkA==",
   "success": true,
-  "projectFilePath": "G:\\Other computers\\Мій ноутбук\\repos\\C#\\Sudoku solver\\Sudoku solver.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\gnatu\\source\\repos\\C#\\Sudoku-solver\\Sudoku solver.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\gnatu\\.nuget\\packages\\autofac\\6.4.0\\autofac.6.4.0.nupkg.sha512",
+    "C:\\Users\\gnatu\\.nuget\\packages\\system.diagnostics.diagnosticsource\\4.7.1\\system.diagnostics.diagnosticsource.4.7.1.nupkg.sha512"
+  ],
   "logs": []
 }
